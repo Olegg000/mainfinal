@@ -13,7 +13,13 @@ class RegUseCase(
 
     suspend fun registerUser(registerRequest: RegisterRequest, password2: String): ResultType<RegisterUser200Response> {
 
+        if (r.mail(registerRequest)) {
+            throw IllegalStateException("email invalid")
+        }
 
+        if (r.length(registerRequest)) {
+            throw IllegalStateException("password too short")
+        }
 
         if (r.passwords(registerRequest, password2)) {
             throw IllegalStateException("password didnt match")

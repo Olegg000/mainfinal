@@ -64,7 +64,7 @@ class TDDTests {
                 role = ""
             )
         )
-        assert(!res)
+        assert(res)
     }
 
     @Test
@@ -79,7 +79,7 @@ class TDDTests {
             ),
             cP
         )
-        assert(!res)
+        assert(res)
     }
 
     @get:Rule
