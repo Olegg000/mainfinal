@@ -2,20 +2,20 @@ package com.example.mainfinal.domain.validator
 
 import org.openapitools.client.models.RegisterRequest
 
-object RegUseCaseValidator  {
+object RegUseCaseValidator {
 
-     fun length(registerRequest: RegisterRequest): Boolean = registerRequest.password.length < 8
+    fun lengthPassword(registerRequest: RegisterRequest): Boolean = registerRequest.password.length < 8
 
-     fun passwords(
+    fun passwordsMatch(
         registerRequest: RegisterRequest,
         password2: String
     ): Boolean = registerRequest.password != password2
 
-     fun password(registerRequest: RegisterRequest): Boolean =
+    fun passwordCheck(registerRequest: RegisterRequest): Boolean =
         (!registerRequest.password.any { it.isLowerCase() } || !registerRequest.password.any { it.isUpperCase() }
                 || !registerRequest.password.any { it.isDigit() } || !registerRequest.password.any { !it.isLetterOrDigit() })
 
-     fun mail(registerRequest: RegisterRequest): Boolean =
+    fun mailCheck(registerRequest: RegisterRequest): Boolean =
         !registerRequest.email.all { it.isLowerCase() || it.isDigit() || it == '@' || it == '.' }
 
 }

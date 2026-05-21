@@ -41,7 +41,7 @@ class TDDTests {
 
     @Test
     fun `Валидация Email`() {
-        val res = RegUseCaseValidator.mail(
+        val res = RegUseCaseValidator.mailCheck(
             RegisterRequest(
                 firstName = "",
                 lastName = "",
@@ -55,7 +55,7 @@ class TDDTests {
 
     @Test
     fun `Валидация пароля`() {
-        val res = RegUseCaseValidator.password(
+        val res = RegUseCaseValidator.passwordCheck(
             RegisterRequest(
                 firstName = "",
                 lastName = "",
@@ -69,7 +69,7 @@ class TDDTests {
 
     @Test
     fun `Валидация подтверждения пароля`() {
-        val res =RegUseCaseValidator.passwords(
+        val res =RegUseCaseValidator.passwordsMatch(
             RegisterRequest(
                 firstName = "",
                 lastName = "",

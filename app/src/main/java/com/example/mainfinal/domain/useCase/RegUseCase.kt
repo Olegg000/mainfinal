@@ -6,27 +6,34 @@ import com.example.net.types.ResultType
 import org.openapitools.client.models.RegisterRequest
 import org.openapitools.client.models.RegisterUser200Response
 
+object RegErrors{
+    val email = "email invalid"
+    val passwordShort = "password too short"
+    val passwordMatch = "password didnt match"
+    val passwordStrong = "password not strong"
+}
+
 class RegUseCase(
     val authApiRep: AuthApiRep,
-    val r: RegUseCaseValidator = RegUseCaseValidator
+    val validator: RegUseCaseValidator = RegUseCaseValidator
 ) {
 
     suspend fun registerUser(registerRequest: RegisterRequest, password2: String): ResultType<RegisterUser200Response> {
 
-        if (r.mail(registerRequest)) {
-            throw IllegalStateException("email invalid")
+        if (validator.mailCheck(registerRequest)) {
+            throw IllegalStateException(RegErrors.email)
         }
 
-        if (r.length(registerRequest)) {
-            throw IllegalStateException("password too short")
+        if (validator.lengthPassword(registerRequest)) {
+            throw IllegalStateException(RegErrors.passwordShort)
         }
 
-        if (r.passwords(registerRequest, password2)) {
-            throw IllegalStateException("password didnt match")
+        if (validator.passwordsMatch(registerRequest, password2)) {
+            throw IllegalStateException(RegErrors.passwordMatch)
         }
 
-        if (r.password(registerRequest)) {
-            throw IllegalStateException("password not strong")
+        if (validator.passwordCheck(registerRequest)) {
+            throw IllegalStateException(RegErrors.passwordStrong)
         }
 
         return authApiRep.registerUser(registerRequest)
