@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.mainfinal.presentation.components.Image
 import com.example.mainfinal.presentation.screens.base.ScreenWrapper
 import com.example.uikit.components.BaseButton
 import com.example.uikit.components.ButtonsStyle
@@ -55,7 +56,7 @@ fun RegScreen(
                         blur = 12.dp,
                     ) {
                         Column(Modifier.padding(s24)) {
-
+                            Image()
                             Column(
                                 Modifier.fillMaxWidth(),
                                 horizontalAlignment = Alignment.CenterHorizontally
