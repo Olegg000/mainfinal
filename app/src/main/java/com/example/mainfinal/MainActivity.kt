@@ -9,11 +9,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mainfinal.presentation.common.LocalNavController
+import com.example.mainfinal.presentation.screens.chat.ChatScreen
 import com.example.mainfinal.presentation.screens.reg.RegScreen
 import com.example.net.common.ContextHolder
 import com.example.uikit.theme.TextBase
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ContextHolder.init(this.applicationContext)
@@ -36,6 +38,7 @@ class MainActivity : ComponentActivity() {
 
                     composable("login") {
                         TextBase("login")
+                        ChatScreen()
                     }
 
                 }
