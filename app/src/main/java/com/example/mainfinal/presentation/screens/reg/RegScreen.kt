@@ -16,6 +16,8 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -39,6 +41,8 @@ import com.example.uikit.theme.TextBase
 fun RegScreen(
     viewModel: RegViewModel = viewModel()
 ) {
+
+    val u = LocalUriHandler.current
 
     ScreenWrapper(viewModel, "RegScreen") { state, controller, logger ->
 
@@ -139,6 +143,9 @@ fun RegScreen(
                                     {
                                         viewModel.checked(it)
                                     },
+                                    modifier = Modifier.clickable{
+                                        u.openUri("")
+                                    }
                                 )
                                 Spacer(Modifier.height(32.dp))
                                 BaseButton(
